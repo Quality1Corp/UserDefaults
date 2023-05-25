@@ -15,6 +15,8 @@ final class NewContactViewController: UIViewController {
     
     weak var delegate: NewContactViewControllerDelegate!
     
+    private let storageManager = StorageManager.shared
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let action = UIAction { [weak self] _ in
@@ -35,7 +37,11 @@ final class NewContactViewController: UIViewController {
     private func save() {
         guard let firstName = firstNameTF.text else { return }
         guard let lastName = lastNameTF.text else { return }
-        delegate.add(contact: "\(firstName) \(lastName)")
+        
+        let fullName = "\(firstName) \(lastName)"
+        storageManager.save(contact: fullName)
+        
+        delegate.add(contact: fullName)
         dismiss(animated: true)
     }
 }

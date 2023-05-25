@@ -14,9 +14,11 @@ protocol NewContactViewControllerDelegate: AnyObject {
 final class ContactListViewController: UITableViewController {
     
     private var contacts: [String] = []
+    private let storageManager = StorageManager.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        contacts = storageManager.fetchContact()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -48,6 +50,7 @@ extension ContactListViewController {
         if editingStyle == .delete {
             contacts.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
+            storageManager.deleteContact(at: indexPath.row)
         }
     }
 }
