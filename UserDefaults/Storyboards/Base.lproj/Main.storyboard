@@ -11,13 +11,13 @@
         <!--Contacts-->
         <scene sceneID="Bsx-9E-kfI">
             <objects>
-                <tableViewController id="dsT-Y3-2h2" sceneMemberID="viewController">
+                <tableViewController id="dsT-Y3-2h2" customClass="ContactListViewController" customModule="UserDefaults" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="GaA-ZG-ecK">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="j7T-Tr-0l2">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="contact" id="j7T-Tr-0l2">
                                 <rect key="frame" x="0.0" y="50" width="320" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="j7T-Tr-0l2" id="dz3-AA-dM2">
@@ -46,7 +46,7 @@
         <!--New Contact-->
         <scene sceneID="M5K-yg-qSE">
             <objects>
-                <viewController id="CRC-ct-guh" sceneMemberID="viewController">
+                <viewController id="CRC-ct-guh" customClass="NewContactViewController" customModule="UserDefaults" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qMn-0d-gQ1">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -55,8 +55,16 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
                                 <items>
                                     <navigationItem title="Title" id="lNz-dO-NNp">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="LhX-1a-P1N"/>
-                                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="done" id="5dY-9S-aO2"/>
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="LhX-1a-P1N">
+                                            <connections>
+                                                <action selector="cancelButtonPressed:" destination="CRC-ct-guh" id="TXo-ne-Qad"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="done" id="5dY-9S-aO2">
+                                            <connections>
+                                                <action selector="doneButtonPressed:" destination="CRC-ct-guh" id="QB7-a2-hna"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -91,6 +99,11 @@
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="9IE-ks-IO0"/>
                         <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="done" id="ZeV-PV-21v"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="doneButton" destination="5dY-9S-aO2" id="HUb-4L-cSS"/>
+                        <outlet property="firstNameTF" destination="qz5-kF-03A" id="LdI-n8-SVS"/>
+                        <outlet property="lastNameTF" destination="MDn-Fx-gP1" id="0P2-q8-L0E"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GZY-Y8-imq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
